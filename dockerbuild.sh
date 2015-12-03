@@ -5,13 +5,13 @@ rm -rf ./dist
 
 echo Building app
 grunt
-
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 cp ./Dockerfile ./dist/
 
 cd dist
 npm install --production
 
 echo Building docker image
-docker build -t k371/tictactoe .
-
+cocker build -t k371/tictactoe .
+-rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 echo "Done"
