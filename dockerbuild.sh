@@ -12,6 +12,6 @@ cd dist
 npm install --production
 
 echo Building docker image
-cocker build -t k371/tictactoe .
--rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
+docker build -t k371/tictactoe .
+rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 echo "Done"
