@@ -1,6 +1,6 @@
 # Report
 
-### About Vagrant
+### About Vagrant.
 Vagrant er notað til þess að búa til heilsteypt þróunarumhverfi. Markmiðið með að nota Vagrant er að auka sjálfvirkni, lækka uppsetningartíma og auðvelda þróun í samstarfi við drefingu á hugbúnaði.
 
 ### VirtualBox
