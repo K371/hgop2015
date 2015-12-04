@@ -18,5 +18,5 @@ Nodejs er notað til að búa til skalanleg internet-forrit. Nodejs er ósamstil
 ### bower
 Bower er notað til þess að ná í og setja upp pakka þar sem markmiðið er að þurfa ekki að leita út um allt internetið að pakka, heldur vera með þá á sama stað.
 
-### Topology.
+### Topology
 Bæði þróunarvélin og prófunarvélin þurfa að vera í gangi til þess að build-a og deploy-a kerfinu okkar. Þróunarvélin gerir ráð fyrir að prófunarvélin sé í gangi. Þróunarvélin tengist prófunarvélinni með ssh á local-IP tölu prófunarvélarinnar sem er á "Private Network-i" þar sem búið er að gefa þróunarvélinni lykil til þess að tengjast prófunarvélinni án lykilorðs. Þróunarvélin uppfærir og endurkeyrir kerfið á prófunarvélinni. 
