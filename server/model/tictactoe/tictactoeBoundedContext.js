@@ -7,8 +7,14 @@ module.exports = function(eventStore, commandHandler){
       var defer = q.defer();
       eventStore.loadEvents(cmd.gameId).then(function(eventStream){
         var events;
+<<<<<<< HEAD
 	try{
          events = commandHandler(eventStream).executeCommand(cmd);
+=======
+
+        try{
+          events = commandHandler(eventStream).executeCommand(cmd);
+>>>>>>> stefaneg/master
         } catch(e){
           defer.reject(e);
         }
@@ -22,4 +28,4 @@ module.exports = function(eventStore, commandHandler){
       return defer.promise;
     }
   }
-}
+};
