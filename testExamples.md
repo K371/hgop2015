@@ -15,15 +15,23 @@ Then [Error("Duplicate turns for player X")]
 
 ##### Consider winning scenarios. Hint: There are at least three winning scenarios that must be considered from a programming perspective.
 Sama tag 'X' eða 'O' í sömu röð.
-> Given [Placed(X,0,0) Placed(X,1,0) Placed(X,2,0)]
+> Given [Placed(X,0,0) Placed(X,1,0)]
+> When [Placed(X,0,1)]
+> Then [Xwins()]
 
 Sama tag 'X' eða 'O' í sama dálki.
-> Given [Placed(X,0,0) Placed(X,0,1) Placed(X,0,2)]
+> Given [Placed(X,0,0) Placed(X,0,1)]
+> When [Placed(X,0,2)]
+> Then [Xwins()]
 
 Sama tag 'X' eða 'O' skáfellt niður hægri eða vinstri.
-> Given [Placed(X,0,0) Placed(X,1,1) Placed(X,2,2)]
+> Given [Placed(X,0,0) Placed(X,1,1)]
+> When [Placed(X,2,2)]
+> Then [Xwins()]
 
-> Given [Placed(X,2,0) Placed(X,1,1) Placed(X,0,2)]
+> Given [Placed(X,2,0) Placed(X,1,1)]
+> When [Placed(X,0,2)]
+> Then [Xwins()]
 
 ##### Consider draw scenarios.
 > Given [AllPlaced()]
