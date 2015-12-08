@@ -23,7 +23,7 @@ if [[ $rc != 0 ]] ; then
 fi
 
 echo Building docker image
-docker build -t k371/tictactoe .
+docker build -t gulli/tictactoe .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
