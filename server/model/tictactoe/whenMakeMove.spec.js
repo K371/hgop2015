@@ -144,7 +144,18 @@ describe('when make move command', function(){
         timeStamp: "2015.12.02T11:30:50"
       };
 
-      then=[{
+      then=[
+      {
+        id:"12350",
+        event:"MoveMade",
+        userName:"Halli",
+        name:"TheFirstGame",
+        x:2,
+        y:0,
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      },
+      {
         id:"12350",
         event:"GameWon",
         userName:"Halli",
@@ -214,6 +225,16 @@ describe('when make move command', function(){
 
       then=[{
         id:"12350",
+        event:"MoveMade",
+        userName:"Halli",
+        name:"TheFirstGame",
+        x:0,
+        y:2,
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      },
+      {
+        id:"12350",
         event:"GameWon",
         userName:"Halli",
         name:"TheFirstGame",
@@ -282,6 +303,16 @@ describe('when make move command', function(){
 
       then=[{
         id:"12350",
+        event:"MoveMade",
+        userName:"Halli",
+        name:"TheFirstGame",
+        x:2,
+        y:2,
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      },
+      {
+        id:"12350",
         event:"GameWon",
         userName:"Halli",
         name:"TheFirstGame",
@@ -349,6 +380,16 @@ describe('when make move command', function(){
       };
 
       then=[{
+        id:"12350",
+        event:"MoveMade",
+        userName:"Halli",
+        name:"TheFirstGame",
+        x:0,
+        y:2,
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      },
+      {
         id:"12350",
         event:"GameWon",
         userName:"Halli",
@@ -459,6 +500,16 @@ describe('when make move command', function(){
       };
 
       then=[{
+        id:"12350",
+        event:"MoveMade",
+        userName:"Halli",
+        name:"TheFirstGame",
+        x:2,
+        y:2,
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      },
+      {
         id:"12350",
         event:"Draw",
         userName:"Halli",

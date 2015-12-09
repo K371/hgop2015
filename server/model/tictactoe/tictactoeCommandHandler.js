@@ -50,6 +50,25 @@ module.exports = function tictactoeCommandHandler(events) {
       }
     },
     "MakeMove": function(cmd){
+      var makeMoveReturn = {
+        id: cmd.id,
+        event: "MoveMade",
+        userName: cmd.userName,
+        name:gameState.gameCreatedEvent.name,
+        x:cmd.x,
+        y:cmd.y,
+        side:cmd.side,
+        timeStamp: cmd.timeStamp
+      };
+      var gameWinReturn = {
+            id: cmd.id,
+            event: "GameWon",
+            userName: cmd.userName,
+            name:gameState.gameCreatedEvent.name,
+            side:cmd.side,
+            timeStamp: cmd.timeStamp
+          };
+
       if(gameState.board[cmd.x][cmd.y]!==''){
         return [{
           id: cmd.id,
@@ -69,26 +88,12 @@ module.exports = function tictactoeCommandHandler(events) {
       if(gameState.board[0][cmd.y] === cmd.side && 
          gameState.board[1][cmd.y] === cmd.side &&
          gameState.board[2][cmd.y] === cmd.side){
-          return [{
-            id: cmd.id,
-            event: "GameWon",
-            userName: cmd.userName,
-            name:gameState.gameCreatedEvent.name,
-            side:cmd.side,
-            timeStamp: cmd.timeStamp
-          }]
+          return [makeMoveReturn, gameWinReturn]
       }
       if(gameState.board[cmd.x][0] === cmd.side && 
          gameState.board[cmd.x][1] === cmd.side &&
          gameState.board[cmd.x][2] === cmd.side){
-          return [{
-            id: cmd.id,
-            event: "GameWon",
-            userName: cmd.userName,
-            name:gameState.gameCreatedEvent.name,
-            side:cmd.side,
-            timeStamp: cmd.timeStamp
-          }]
+          return [makeMoveReturn, gameWinReturn]
       }
       if((gameState.board[0][0] === cmd.side && 
          gameState.board[1][1] === cmd.side &&
@@ -96,14 +101,7 @@ module.exports = function tictactoeCommandHandler(events) {
          (gameState.board[0][2] === cmd.side && 
          gameState.board[1][1] === cmd.side &&
          gameState.board[2][0] === cmd.side)){
-          return [{
-            id: cmd.id,
-            event: "GameWon",
-            userName: cmd.userName,
-            name:gameState.gameCreatedEvent.name,
-            side:cmd.side,
-            timeStamp: cmd.timeStamp
-          }]
+          return [makeMoveReturn, gameWinReturn]
       }
       if(gameState.board[0][0] !== '' &&
          gameState.board[1][0] !== '' &&
@@ -114,7 +112,7 @@ module.exports = function tictactoeCommandHandler(events) {
          gameState.board[0][2] !== '' &&
          gameState.board[1][2] !== '' &&
          gameState.board[2][2] !== ''){
-          return [{
+          return [makeMoveReturn, {
             id: cmd.id,
             event: "Draw",
             userName: cmd.userName,
@@ -124,16 +122,7 @@ module.exports = function tictactoeCommandHandler(events) {
           }]
       }
       
-      return [{
-        id: cmd.id,
-        event: "MoveMade",
-        userName: cmd.userName,
-        name:gameState.gameCreatedEvent.name,
-        x:cmd.x,
-        y:cmd.y,
-        side:cmd.side,
-        timeStamp: cmd.timeStamp
-      }]
+      return [makeMoveReturn]
     }
   };
 
