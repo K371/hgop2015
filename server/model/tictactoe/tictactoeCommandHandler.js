@@ -62,48 +62,32 @@ module.exports = function tictactoeCommandHandler(events) {
           timeStamp: cmd.timeStamp
         }]
       }
-      if(cmd.x == 0){
-        if(gameState.board[cmd.x+1][cmd.y]!=='' && gameState.board[cmd.x+1][cmd.y] === cmd.side){
-          if(gameState.board[cmd.x+2][cmd.y]!=='' && gameState.board[cmd.x+2][cmd.y] === cmd.side){
-            return [{
-              id: cmd.id,
-              event: "GameWon",
-              userName: cmd.userName,
-              name:gameState.gameCreatedEvent.name,
-              side:cmd.side,
-              timeStamp: cmd.timeStamp
-            }]
-          }
-        }
+      gameState.board[cmd.x][cmd.y] = cmd.side;
+      if(gameState.board[0][cmd.y] === cmd.side && 
+         gameState.board[1][cmd.y] === cmd.side &&
+         gameState.board[2][cmd.y] === cmd.side){
+          return [{
+            id: cmd.id,
+            event: "GameWon",
+            userName: cmd.userName,
+            name:gameState.gameCreatedEvent.name,
+            side:cmd.side,
+            timeStamp: cmd.timeStamp
+          }]
       }
-      if(cmd.x == 1){
-        if(gameState.board[cmd.x-1][cmd.y]!=='' && gameState.board[cmd.x-1][cmd.y] === cmd.side){
-          if(gameState.board[cmd.x+1][cmd.y]!=='' && gameState.board[cmd.x+1][cmd.y] === cmd.side){
-            return [{
-              id: cmd.id,
-              event: "GameWon",
-              userName: cmd.userName,
-              name:gameState.gameCreatedEvent.name,
-              side:cmd.side,
-              timeStamp: cmd.timeStamp
-            }]
-          }
-        }
+      if(gameState.board[cmd.x][0] === cmd.side && 
+         gameState.board[cmd.x][1] === cmd.side &&
+         gameState.board[cmd.x][2] === cmd.side){
+          return [{
+            id: cmd.id,
+            event: "GameWon",
+            userName: cmd.userName,
+            name:gameState.gameCreatedEvent.name,
+            side:cmd.side,
+            timeStamp: cmd.timeStamp
+          }]
       }
-      if(cmd.x == 2){
-        if(gameState.board[cmd.x-1][cmd.y]!=='' && gameState.board[cmd.x-1][cmd.y] === cmd.side){
-          if(gameState.board[cmd.x-2][cmd.y]!=='' && gameState.board[cmd.x-2][cmd.y] === cmd.side){
-            return [{
-              id: cmd.id,
-              event: "GameWon",
-              userName: cmd.userName,
-              name:gameState.gameCreatedEvent.name,
-              side:cmd.side,
-              timeStamp: cmd.timeStamp
-            }]
-          }
-        }
-      }
+      
       return [{
         id: cmd.id,
         event: "MoveMade",
