@@ -79,10 +79,10 @@ module.exports = function(config) {
 
     reporters:['progress', 'junit'],
     junitReporter: {
-	outputDir: 'test-reports',
-	outputFile: 'karma-junit-results.xml',
-	suite: 'karma',
-	userBrowserName: true
+    	outputDir: 'test-reports',
+    	outputFile: 'karma-junit-results.xml',
+    	suite: 'karma',
+    	userBrowserName: true
     }
   });
 };
