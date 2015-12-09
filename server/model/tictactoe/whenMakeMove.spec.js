@@ -131,7 +131,7 @@ describe('when make move command', function(){
           y:2,
           side:'O',
           timeStamp: "2015.12.02T11:30:50"
-        },
+        }
       ]);
 
       when={
@@ -199,7 +199,7 @@ describe('when make move command', function(){
           y:2,
           side:'O',
           timeStamp: "2015.12.02T11:30:50"
-        },
+        }
       ]);
 
       when={
@@ -267,7 +267,7 @@ describe('when make move command', function(){
           y:2,
           side:'O',
           timeStamp: "2015.12.02T11:30:50"
-        },
+        }
       ]);
 
       when={
@@ -335,7 +335,7 @@ describe('when make move command', function(){
           y:2,
           side:'O',
           timeStamp: "2015.12.02T11:30:50"
-        },
+        }
       ]);
 
       when={
@@ -351,6 +351,116 @@ describe('when make move command', function(){
       then=[{
         id:"12350",
         event:"GameWon",
+        userName:"Halli",
+        name:"TheFirstGame",
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      }];
+
+      var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+      JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+
+    });
+  });
+ describe("draw scenario should happen", function(){
+    it('should be possible to have a draw',function(){
+      given = given.concat([
+        {
+          id:"12345",
+          event:"MoveMade",
+          userName:"Halli",
+          name:"TheFirstGame",
+          x:0,
+          y:0,
+          side:'X',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12346",
+          event:"MoveMade",
+          userName:"Keli",
+          name:"TheFirstGame",
+          x:1,
+          y:0,
+          side:'O',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12347",
+          event:"MoveMade",
+          userName:"Halli",
+          name:"TheFirstGame",
+          x:2,
+          y:0,
+          side:'X',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12348",
+          event:"MoveMade",
+          userName:"Keli",
+          name:"TheFirstGame",
+          x:0,
+          y:1,
+          side:'O',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12347",
+          event:"MoveMade",
+          userName:"Halli",
+          name:"TheFirstGame",
+          x:2,
+          y:1,
+          side:'X',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12348",
+          event:"MoveMade",
+          userName:"Keli",
+          name:"TheFirstGame",
+          x:1,
+          y:1,
+          side:'O',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12347",
+          event:"MoveMade",
+          userName:"Halli",
+          name:"TheFirstGame",
+          x:0,
+          y:2,
+          side:'X',
+          timeStamp: "2015.12.02T11:30:50"
+        },
+        {
+          id:"12348",
+          event:"MoveMade",
+          userName:"Keli",
+          name:"TheFirstGame",
+          x:2,
+          y:2,
+          side:'O',
+          timeStamp: "2015.12.02T11:30:50"
+        }
+      ]);
+
+      when={
+        id:"12350",
+        comm:"MakeMove",
+        userName : "Halli",
+        x:1,
+        y:2,
+        side:'X',
+        timeStamp: "2015.12.02T11:30:50"
+      };
+
+      then=[{
+        id:"12350",
+        event:"Draw",
         userName:"Halli",
         name:"TheFirstGame",
         side:'X',

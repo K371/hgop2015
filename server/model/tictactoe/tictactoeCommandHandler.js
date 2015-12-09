@@ -102,6 +102,24 @@ module.exports = function tictactoeCommandHandler(events) {
             timeStamp: cmd.timeStamp
           }]
       }
+      if(gameState.board[0][0] !== '' &&
+         gameState.board[1][0] !== '' &&
+         gameState.board[2][0] !== '' &&
+         gameState.board[0][1] !== '' &&
+         gameState.board[1][1] !== '' &&
+         gameState.board[2][1] !== '' &&
+         gameState.board[0][2] !== '' &&
+         gameState.board[1][2] !== '' &&
+         gameState.board[2][2] !== ''){
+          return [{
+            id: cmd.id,
+            event: "GameWon",
+            userName: cmd.userName,
+            name:gameState.gameCreatedEvent.name,
+            side:cmd.side,
+            timeStamp: cmd.timeStamp
+          }]
+      }
       
       return [{
         id: cmd.id,
