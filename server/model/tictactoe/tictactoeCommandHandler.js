@@ -82,9 +82,12 @@ module.exports = function tictactoeCommandHandler(events) {
         }]
       }
       gameState.board[cmd.x][cmd.y] = cmd.side;
+      /*
       console.log(gameState.board[0][0]+'\t'+gameState.board[1][0]+'\t'+gameState.board[2][0]+'\t'+'\n');
       console.log(gameState.board[0][1]+'\t'+gameState.board[1][1]+'\t'+gameState.board[2][1]+'\t'+'\n');
       console.log(gameState.board[0][2]+'\t'+gameState.board[1][2]+'\t'+gameState.board[2][2]+'\t'+'\n');
+      */
+      
       if(gameState.board[0][cmd.y] === cmd.side && 
          gameState.board[1][cmd.y] === cmd.side &&
          gameState.board[2][cmd.y] === cmd.side){

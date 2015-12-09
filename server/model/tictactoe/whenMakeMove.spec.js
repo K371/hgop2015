@@ -448,7 +448,7 @@ describe('when make move command', function(){
           timeStamp: "2015.12.02T11:30:50"
         },
         {
-          id:"12347",
+          id:"12349",
           event:"MoveMade",
           userName:"Halli",
           name:"TheFirstGame",
@@ -458,7 +458,7 @@ describe('when make move command', function(){
           timeStamp: "2015.12.02T11:30:50"
         },
         {
-          id:"12348",
+          id:"12350",
           event:"MoveMade",
           userName:"Keli",
           name:"TheFirstGame",
@@ -468,7 +468,7 @@ describe('when make move command', function(){
           timeStamp: "2015.12.02T11:30:50"
         },
         {
-          id:"12347",
+          id:"12351",
           event:"MoveMade",
           userName:"Halli",
           name:"TheFirstGame",
@@ -478,7 +478,7 @@ describe('when make move command', function(){
           timeStamp: "2015.12.02T11:30:50"
         },
         {
-          id:"12348",
+          id:"12352",
           event:"MoveMade",
           userName:"Keli",
           name:"TheFirstGame",
@@ -490,7 +490,7 @@ describe('when make move command', function(){
       ]);
 
       when={
-        id:"12350",
+        id:"12353",
         comm:"MakeMove",
         userName : "Halli",
         x:2,
@@ -500,7 +500,7 @@ describe('when make move command', function(){
       };
 
       then=[{
-        id:"12350",
+        id:"12353",
         event:"MoveMade",
         userName:"Halli",
         name:"TheFirstGame",
@@ -510,7 +510,7 @@ describe('when make move command', function(){
         timeStamp: "2015.12.02T11:30:50"
       },
       {
-        id:"12350",
+        id:"12353",
         event:"Draw",
         userName:"Halli",
         name:"TheFirstGame",
