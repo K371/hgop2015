@@ -16,6 +16,11 @@ Hints:
 npm install q --save
 
 ``` 
+
 - Change gameHistory.spec.js to mata
 - Adapt router.js and change the verbs there to match those in your commands.
+
+- Change gameHistory.spec.js to match your commands.
+- Adapt routes.js and change the verbs there to match those in your commands.
+
 

@@ -49,11 +49,18 @@ fi
 
 echo Building docker image
 
-docker build -t gulli/tictactoe:$GIT_COMMIT .
+docker build -t k371/tictactoe:$GIT_COMMIT .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
     echo "Docker build failed " $rc
+    exit $rc
+fi
+
+docker push k371/tictactoe:$GIT_COMMIT
+rc=$?
+if [[ $rc != 0 ]] ; then
+    echo "Docker push failed " $rc
     exit $rc
 fi
 
