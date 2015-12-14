@@ -58,5 +58,17 @@ describe('TEST ENV GET /api/gameHistory', function () {
      given(user("YourUser").createsGame("TheFirstGame"))
      .expect("GameCreated").withName("TheFirstGame").isOk(done);
    });
-
+   it('Should play game until won or drawn', function (done) {
+       given(user("YourUser").createsGame("GameIdOne")
+         .and(user("YourUser").makesMove(0,0))
+         .and(user("OtherUser").makesMove(2,0))
+         .and(user("YourUser").makesMove(1,0))
+         .and(user("OtherUser").makesMove(0,1))
+         .and(user("YourUser").makesMove(2,1))
+         .and(user("OtherUser").makesMove(1,1))
+         .and(user("YourUser").makesMove(0,2))
+         .and(user("OtherUser").makesMove(1,2))
+         .and(user("YourUser").makesMove(2,2)))
+       .expect("Draw").byUser("OtherUser").isOk(done);
+     });
 });
