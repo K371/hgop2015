@@ -2,11 +2,11 @@
 [0m[0m
 [0m  TEST ENV GET /api/gameHistory[0m
 [2K[0G  [32m  ✓[0m[90m Should have ACCEPTANCE_URL environment variable exported. [0m
-[2K[0G  [32m  ✓[0m[90m should execute same test using old style [0m[31m(89ms)[0m
+[2K[0G  [32m  ✓[0m[90m should execute same test using old style [0m[31m(90ms)[0m
 [2K[0G  [32m  ✓[0m[90m Should execute fluid API test [0m
 [2K[0G  [32m  ✓[0m[90m Should have movemade functionality [0m
-[2K[0G  [32m  ✓[0m[90m Should play game until won or drawn [0m[31m(115ms)[0m
+[2K[0G  [32m  ✓[0m[90m Should play game until won or drawn [0m[31m(121ms)[0m
 
 
-[92m [0m[32m 5 passing[0m[90m (278ms)[0m
+[92m [0m[32m 5 passing[0m[90m (283ms)[0m
 
