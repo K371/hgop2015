@@ -1,70 +1,128 @@
 var should = require('should');
 var request = require('supertest');
+var async = require('async');
 var acceptanceUrl = process.env.ACCEPTANCE_URL;
+var ID = 0;
 
 function given(userApi) {
-  var _expectedEvents=[{
-    "id": "1234",
-    "gameId": userApi._command.gameId,
-    "event": "EventName",
-    "userName": userApi._command.userName,
-    "name": userApi._command.gameId,
-    "timeStamp": "2014-12-02T11:29:29"
-  }];
-  var _currentEvent = 0;
+  var expectedArr = [];
   var expectApi = {
     withName: function (gameName) {
-      _expectedEvents[_currentEvent].name = gameName;
+      expectedArr[expectedArr.length - 1].name = gameName;
       return expectApi;
     },
     expect: function (eventName) {
-      _expectedEvents[_currentEvent].event = eventName;
+      expectedArr.push({
+        event: eventName
+      });
+      return expectApi;
+    },
+    and: function (eEvent){
+      userApi = userApi.concat(eEvent);
+      return expectApi;
+    },
+    withGameId: function (gameId){
+      expectedArr[expectedArr.length - 1].gameId = gameId;
+      return expectApi;
+    },
+    byUser: function(userName){
+      expectedArr[expectedArr.length - 1].userName = userName;
       return expectApi;
     },
     isOk: function (done) {
-      var req = request(acceptanceUrl);
-      req
-        .post('/api/createGame')
-        .type('json')
-        .send(userApi._command)
-        .end(function (err, res) {
-          if (err) return done(err);
-          request(acceptanceUrl)
-            .get('/api/gameHistory/' + userApi._command.gameId)
-            .expect(200)
-            .expect('Content-Type', /json/)
-            .end(function (err, res) {
-              if (err) return done(err);
-              res.body.should.be.instanceof(Array);
-              should(res.body).eql(
-                _expectedEvents);
-              done();
-            });
-        });
-      return expectApi;
-    },
+      async.eachSeries(userApi, (userCommand, cb) => {
+        var url = '';
+        if(userCommand.comm === 'MakeMove'){
+          url = '/api/placeMove';
+        }
+        else{
+
+            url = '/api/' + (userCommand.comm);
+
+        }
+        var cmd = {
+          id:        ID.toString(),
+          comm:      userCommand.comm,
+          userName:  userCommand.userName,
+          gameId:    userCommand.gameId,
+          timeStamp: new Date().toJSON().slice(0, 19)
+        };
+        if(userCommand.comm === 'MakeMove'){
+          cmd.x = userCommand.x;
+          cmd.y = userCommand.y;
+          cmd.side = userCommand = userCommand.side;
+        }
+        ID++;
+        request(acceptanceUrl).post(url)
+          .type('json')
+          .send(cmd)
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .end((err, res) => {
+            if (err)
+              return done(err);
+            res.body.should.be.instanceof(Array);
+            cb();
+          });
+      }, () => {
+        var gameId = userApi[0].gameId;
+        request(acceptanceUrl).get('/api/gameHistory/' + gameId)
+          .expect(200)
+          .expect('Content-Type', /json/)
+          .end((err, res) => {
+            if(err)
+              return done(err);
+            done();
+          });
+      });
+    }
   };
 
   return expectApi;
 }
 
 function user(userName) {
+  var commands = [];
   var userApi = {
-    _command: undefined,
     createsGame: function (gameId) {
-      userApi._command = {
-        id: "1234",
+      commands.push({
         gameId: gameId,
-        comm: "CreateGame",
+        comm: 'CreateGame',
         userName: userName,
-        name: gameId,
-        timeStamp: "2014-12-02T11:29:29"
-      };
+      });
       return userApi;
+    },
+    joinsGame: function (gameId) {
+      commands.push({
+        gameId: gameId,
+        comm: 'JoinGame',
+        userName: userName
+      });
+      return userApi
     },
     withId : function(gameId){
       userApi._command.gameId = gameId;
       return userApi;
+    },
+    placesMove: function(col, row){
+      commands.push({
+        comm: 'MakeMove',
+        userName: userName,
+        x: col,
+        y: row
+      });
+      return userApi;
+    },
+    setSide: function(side){
+      commands[commands.length -1].side = side;
+      return userApi;
+    },
+    gameIdentifier: function(gameId){
+      commands[commands.length -1].gameId = gameId;
+      return userApi;
+    },
+    commandHistory: function(){
+      return commands;
     }
   };
   return userApi

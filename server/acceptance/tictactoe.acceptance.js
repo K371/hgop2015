@@ -20,7 +20,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
       id: "1234",
       gameId: "100000",
       comm: "CreateGame",
-      userName: "Gulli",
+      userName: "Keli",
       name: "TheFirstGame",
       timeStamp: "2014-12-02T11:29:29"
     };
@@ -44,7 +44,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
                 "id": "1234",
                 "gameId": "100000",
                 "event": "GameCreated",
-                "userName": "Gulli",
+                "userName": "Keli",
                 "name": "TheFirstGame",
                 "timeStamp": "2014-12-02T11:29:29"
               }]);
@@ -55,20 +55,29 @@ describe('TEST ENV GET /api/gameHistory', function () {
 
 
    it('Should execute fluid API test', function (done) {
-     given(user("YourUser").createsGame("TheFirstGame"))
+     given(user("YourUser").createsGame("TheFirstGame").commandHistory())
      .expect("GameCreated").withName("TheFirstGame").isOk(done);
    });
+   it('Should have movemade functionality', function (done) {
+      given(user('Keli').createsGame('230792').commandHistory())
+         .and(user('Addi').joinsGame('230792').commandHistory())
+         .and(user('Keli').placesMove(0, 1).gameIdentifier('230792').setSide('X').commandHistory())
+         .expect('MoveMade').byUser('Keli').isOk(done);
+  });
+
    it('Should play game until won or drawn', function (done) {
-       given(user("YourUser").createsGame("GameIdOne")
-         .and(user("YourUser").makesMove(0,0))
-         .and(user("OtherUser").makesMove(2,0))
-         .and(user("YourUser").makesMove(1,0))
-         .and(user("OtherUser").makesMove(0,1))
-         .and(user("YourUser").makesMove(2,1))
-         .and(user("OtherUser").makesMove(1,1))
-         .and(user("YourUser").makesMove(0,2))
-         .and(user("OtherUser").makesMove(1,2))
-         .and(user("YourUser").makesMove(2,2)))
-       .expect("Draw").byUser("OtherUser").isOk(done);
+       given(user("Keli").createsGame("2089").commandHistory())
+       .and(user('Addi').joinsGame('2089').commandHistory())
+        .and(user('Keli').placesMove(0, 0).gameIdentifier('2089').setSide('X').commandHistory())
+        .and(user('Addi').placesMove(2, 0).gameIdentifier('2089').setSide('O').commandHistory())
+        .and(user('Keli').placesMove(1, 0).gameIdentifier('2089').setSide('X').commandHistory())
+        .and(user('Addi').placesMove(0, 1).gameIdentifier('2089').setSide('O').commandHistory())
+        .and(user('Keli').placesMove(2, 1).gameIdentifier('2089').setSide('X').commandHistory())
+        .and(user('Addi').placesMove(1, 1).gameIdentifier('2089').setSide('O').commandHistory())
+        .and(user('Keli').placesMove(0, 2).gameIdentifier('2089').setSide('X').commandHistory())
+        .and(user('Addi').placesMove(1, 2).gameIdentifier('2089').setSide('O').commandHistory())
+        .and(user('Keli').placesMove(2, 2).gameIdentifier('2089').setSide('X').commandHistory())
+        .expect('Draw').isOk(done);
      });
+
 });
