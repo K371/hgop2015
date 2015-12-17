@@ -5,7 +5,7 @@ it('Should play 100 games in 6 seconds.', function (done) {
   var doneCount = 0;
   var gamesToPlay = 100;
   var x = 7;
-
+  // updated to 7 sec
   this.timeout(x * 1000);
 
   var QED = function () {
