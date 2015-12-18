@@ -28,8 +28,11 @@ Er að ná 100 runs undir 7 sekúndum.
 
 #### Commit Stage
 > export DISPLAY=:0
+
 > npm install
+
 > bower install
+
 > ./dockerbuild.sh
 
 #### Deployment Stage
@@ -37,10 +40,15 @@ Er að ná 100 runs undir 7 sekúndum.
 
 #### Acceptance Test
 > export DISPLAY=:0
+
 > npm install
+
 > ./acceptance.sh
 
 #### Load Test / Capacity
+
 > export DISPLAY=:0
+
 > npm install
+
 > ./loadTest.sh
