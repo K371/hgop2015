@@ -25,17 +25,21 @@ Bæði þróunarvélin og prófunarvélin þurfa að vera í gangi til þess að
 Er að ná 100 runs undir 7 sekúndum.
 
 ### Jenkins scripts / Wrap Up
+
 #### Commit Stage
 > export DISPLAY=:0
 > npm install
 > bower install
 > ./dockerbuild.sh
+
 #### Deployment Stage
 > ./deploy.sh
+
 #### Acceptance Test
 > export DISPLAY=:0
 > npm install
 > ./acceptance.sh
+
 #### Load Test / Capacity
 > export DISPLAY=:0
 > npm install
